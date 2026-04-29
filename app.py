@@ -1,21 +1,22 @@
-from fastapi import FastAPI
-from sklearn.linear_model import LinearRegression
-import numpy as np
-from pydantic import BaseModel
-from fastapi import HTTPException
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, Field
+import joblib
+import os
 
 app = FastAPI()
 
-# MODEL
-X = np.array([[1], [2], [3], [4]])
-y = np.array([2, 4, 6, 8])
-
-model = LinearRegression()
-model.fit(X, y)
+# LOAD MODEL
+try:
+    MODEL_PATH = os.path.join(os.path.dirname(__file__), "model.pkl")
+    model = joblib.load(MODEL_PATH)
+    print("Model loaded successfully")
+    print(f"Model type: {type(model)}")
+except Exception as e:
+    raise RuntimeError(f"Nie można załadować modelu: {e}")
 
 # INPUT
 class InputData(BaseModel):
-    value: float
+    value: float = Field(..., gt=0, lt=1000)
 
 # ROOT
 @app.get("/")
@@ -25,21 +26,38 @@ def root():
 # PREDICT
 @app.post("/predict")
 def predict(data: InputData):
-    if data.value is None:
-        raise HTTPException(status_code=400, detail="Brak danych")
-
-    prediction = model.predict([[data.value]])
-    return {"prediction": float(prediction[0])}
+    try:
+        prediction = model.predict([[data.value]])
+        return {"prediction": float(prediction[0])}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 # INFO
 @app.get("/info")
 def info():
     return {
-        "model": "LinearRegression",
-        "features": 1
+        "model": str(type(model)),
+        "input_type": "float",
+        "output_type": "float",
+        "description": "Model loaded from model.pkl",
+        "endpoints": ["/predict", "/info", "/health", "/version"]
     }
 
 # HEALTH
 @app.get("/health")
 def health():
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "model_loaded": model is not None
+    }
+
+# VERSION
+@app.get("/version")
+def version():
+    return {"version": "1.0.0"}
+
+@app.get("/config")
+def config():
+    return {
+        "app_name": os.getenv("APP_NAME", "default-app")
+    }
