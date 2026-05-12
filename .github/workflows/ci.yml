@@ -27,7 +27,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install -r LAB05/requirements.txt
+          pip install -r LAB06/requirements.txt
 
       - name: Run tests
         run: |
