@@ -1,0 +1,31 @@
+﻿Opisy do screenow - LAB10
+
+Screen 1
+Sprawdzono zainstalowana wersje Javy poleceniem java -version. Jest to wymagany element przygotowania srodowiska do uruchomienia Apache Spark.
+
+Screen 2
+Zainstalowano pakiet pyspark za pomoca pip. Instalacja dodaje biblioteki potrzebne do pracy ze Spark SQL w Pythonie.
+
+Screen 3
+Uruchomiono prosty program testowy w PyCharmie. Komunikat "Spark dziala!" oraz kod zakonczenia 0 potwierdzaja, ze sesja Spark uruchamia sie poprawnie.
+
+Screen 4
+Wczytano plik Parquet do DataFrame w PySpark. Wyswietlono dane metoda show() oraz strukture danych metoda printSchema(), co realizuje Zadanie 1.
+
+Screen 5
+Wczytano dane z pliku CSV z naglowkiem i automatycznym rozpoznaniem typow kolumn. DataFrame zostal zarejestrowany jako widok sales_view, a nastepnie wykonano zapytanie SELECT * FROM sales_view LIMIT 10.
+
+Screen 6
+Wykonano zapytania agregujace w Spark SQL. Obliczono liczbe transakcji, sume kwot oraz srednia wartosc transakcji, a takze pokazano grupowanie wedlug regionu i produktu.
+
+Screen 7
+Wykonano filtrowanie warunkowe w Spark SQL. Zapytanie WHERE amount > 3000 zwrocilo tylko transakcje, ktorych wartosc przekracza 3000.
+
+Screen 8
+Wykonano JOIN dwoch widokow: sales_view oraz products_view. Polaczono dane sprzedazy z danymi produktow, dzieki czemu wynik zawiera nazwe produktu i kategorie.
+
+Screen 9
+Zapisano wynik koncowego zapytania analitycznego do pliku CSV. Nastepnie ponownie wczytano zapisany plik, aby potwierdzic poprawny zapis wyniku.
+
+Screen 10
+Widoczny jest koniec dzialania programu i komunikaty o zakonczeniu procesow Spark. Potwierdza to, ze skrypt zakonczyl prace po wykonaniu wszystkich etapow laboratorium.

@@ -1,0 +1,7 @@
+category,region,transaction_count,total_quantity,total_amount,average_amount
+Electronics,East,2,4,11200,5600.0
+Electronics,North,3,6,12400,4133.33
+Electronics,West,2,3,5600,2800.0
+Furniture,South,2,7,4500,2250.0
+Office,South,1,5,7500,7500.0
+Office,West,1,1,1500,1500.0
