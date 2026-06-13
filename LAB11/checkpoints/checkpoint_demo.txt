@@ -1,0 +1,2 @@
+W docelowym srodowisku Hadoop/Spark checkpointLocation wskazuje ten katalog.
+Na tym Windowsie realny Spark checkpoint wymaga hadoop.dll, dlatego skrypt zapisuje marker demonstracyjny.

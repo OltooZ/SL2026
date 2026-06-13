@@ -1,4 +1,15 @@
+@"
 .venv/
+.venv311/
 __pycache__/
-*.pyc
 .idea/
+
+*.zip
+*.tar.gz
+*.parquet
+
+TARCZI/data/
+
+LAB11/checkpoint/
+LAB11/output/
+"@ | Out-File -Encoding utf8 .gitignore
